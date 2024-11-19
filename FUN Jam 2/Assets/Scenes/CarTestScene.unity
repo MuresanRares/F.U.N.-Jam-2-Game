@@ -161,7 +161,7 @@ MonoBehaviour:
   frontLeftTransform: {fileID: 543450651994197801}
   backRightTransform: {fileID: 543450653455552167}
   backLeftTransform: {fileID: 543450652174044975}
-  Acceleration: 400
+  Acceleration: 500
   BreakForce: 300
   TurnAngle: 25
 --- !u!4 &358116077
@@ -376,7 +376,7 @@ Transform:
   m_GameObject: {fileID: 768106977}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.566, y: 0.593, z: -0.708}
+  m_LocalPosition: {x: 0.566, y: 0.593, z: -0.7239999}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -447,7 +447,7 @@ Transform:
   m_GameObject: {fileID: 903193411}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.574, y: 0.593, z: -0.708}
+  m_LocalPosition: {x: -0.574, y: 0.593, z: -0.724}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
