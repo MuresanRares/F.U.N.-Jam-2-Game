@@ -9,7 +9,13 @@ EditorBuildSettings:
     path: Assets/Scenes/MenuScene.unity
     guid: ffc84276cd12a0b408577405df2ec352
   - enabled: 1
-    path: Assets/Scenes/CarTestScene.unity
-    guid: 01c715781a8d0eb44b0c76a3a2601c18
+    path: Assets/Scenes/LabyrinthScene.unity
+    guid: 376ae5bf0402f124ea23054fb3b9cf06
+  - enabled: 1
+    path: Assets/Scenes/RiverScene.unity
+    guid: ed783802ac062c14e870303d0ce6face
+  - enabled: 1
+    path: Assets/Scenes/HedgehogDenScene.unity
+    guid: 38d66396de23e774eb8ba3115faeba73
   m_configObjects: {}
   m_UseUCBPForAssetBundles: 0
