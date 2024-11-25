@@ -37,7 +37,7 @@ public class RepairCar : MonoBehaviour
             {
                 BrokenText.SetActive(true);
             }
-            if (MissingWheel.activeInHierarchy == true)
+            else if (MissingWheel.activeInHierarchy == true)
             {
                 EnterText.SetActive(true);
                 if (Input.GetKey(KeyCode.E))
