@@ -22,11 +22,23 @@ public class WheelController : MonoBehaviour
     private float _cBreakForce = 0f;
     private float _currentTurnAngle = 0f;
 
-    public bool inCar = false;
+    public CarStatus carStatus;
+
+    void Start()
+    {
+        if (carStatus == null)
+        {
+            carStatus = FindObjectOfType<CarStatus>();
+            if (carStatus == null)
+            {
+                Debug.LogError("CarStatus script is not assigned and could not be found in the scene!");
+            }
+        }
+    }
 
     private void FixedUpdate()
     {
-        if(inCar == true)
+        if (carStatus.inCar)
         {
             _cAcceleration = Acceleration * Input.GetAxis("Vertical");
 

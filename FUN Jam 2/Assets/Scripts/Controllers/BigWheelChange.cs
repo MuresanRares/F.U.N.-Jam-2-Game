@@ -10,6 +10,10 @@ public class BigWheelChange : MonoBehaviour
     public GameObject HasWheel;
     public GameObject CarCollider;
 
+    public GameObject Player;
+    public GameObject CarCamera;
+    public GameObject MissionTurnOff;
+    public CarStatus carStatus;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -20,6 +24,15 @@ public class BigWheelChange : MonoBehaviour
         SmallWheels.SetActive(true);
         BigWheels.SetActive(false);
         EnterText.SetActive(false);
+
+        if (carStatus == null)
+        {
+            carStatus = FindObjectOfType<CarStatus>();
+            if (carStatus == null)
+            {
+                Debug.LogError("CarStatus script is not assigned and could not be found in the scene!");
+            }
+        }
     }
 
     private void OnTriggerStay(Collider other)
@@ -47,9 +60,11 @@ public class BigWheelChange : MonoBehaviour
                 EnterText.SetActive(true);
                 if (Input.GetKey(KeyCode.E))
                 {
-                    // add something like if press e then you enter car
-                    // then is this
+                    Player.SetActive(false);
+                    CarCamera.SetActive(true);
+                    carStatus.inCar = true;
                     CarCollider.SetActive(false);
+                    MissionTurnOff.SetActive(false);
                 }
             }
         }
