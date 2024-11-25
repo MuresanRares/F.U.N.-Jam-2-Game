@@ -13,13 +13,16 @@ public class RepairCar : MonoBehaviour
     public GameObject CarCamera;
     public GameObject MissionTurnOff;
     public CarStatus carStatus;
-    
+
+    public bool inCar;
+
     void Start()
     {
         BrokenText.SetActive(false);
         RepairText.SetActive(false);
         MissingWheel.SetActive(false);
         EnterText.SetActive(false);
+        bool inCar = false;
 
         if (carStatus == null)
         {
@@ -52,14 +55,18 @@ public class RepairCar : MonoBehaviour
             }
             else if (MissingWheel.activeInHierarchy == true)
             {
-                EnterText.SetActive(true);
+                if (inCar == false)
+                {
+                    EnterText.SetActive(true);
+                }
                 if (Input.GetKey(KeyCode.E))
                 {
                     Player.SetActive(false);
                     CarCamera.SetActive(true);
                     carStatus.inCar = true;
-                    CarCollider.SetActive(false);
                     MissionTurnOff.SetActive(false);
+                    bool inCar = true;
+                    EnterText.SetActive(false);
                 }
             }
         }

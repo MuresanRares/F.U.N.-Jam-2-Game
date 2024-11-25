@@ -15,9 +15,12 @@ public class BigWheelChange : MonoBehaviour
     public GameObject MissionTurnOff;
     public CarStatus carStatus;
 
+    public bool inCar;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        bool inCar = false;
         CarCollider.SetActive(true);
         BrokenText.SetActive(false);
         RepairText.SetActive(false);
@@ -57,7 +60,10 @@ public class BigWheelChange : MonoBehaviour
             }
             if (BigWheels.activeInHierarchy == true)
             {
-                EnterText.SetActive(true);
+                if (inCar == false)
+                {
+                    EnterText.SetActive(true);
+                }
                 if (Input.GetKey(KeyCode.E))
                 {
                     Player.SetActive(false);
@@ -65,6 +71,8 @@ public class BigWheelChange : MonoBehaviour
                     carStatus.inCar = true;
                     CarCollider.SetActive(false);
                     MissionTurnOff.SetActive(false);
+                    EnterText.SetActive(false);
+                    bool inCar = true;
                 }
             }
         }
