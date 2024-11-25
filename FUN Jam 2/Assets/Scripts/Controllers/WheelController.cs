@@ -22,32 +22,37 @@ public class WheelController : MonoBehaviour
     private float _cBreakForce = 0f;
     private float _currentTurnAngle = 0f;
 
+    public bool inCar = false;
+
     private void FixedUpdate()
     {
-        _cAcceleration = Acceleration * Input.GetAxis("Vertical");
+        if(inCar == true)
+        {
+            _cAcceleration = Acceleration * Input.GetAxis("Vertical");
 
-        _currentTurnAngle = TurnAngle * Input.GetAxis("Horizontal");
+            _currentTurnAngle = TurnAngle * Input.GetAxis("Horizontal");
 
-        if (Input.GetKey(KeyCode.Space))
-            _cBreakForce = BreakForce;
-        else
-            _cBreakForce = 0f;
+            if (Input.GetKey(KeyCode.Space))
+                _cBreakForce = BreakForce;
+            else
+                _cBreakForce = 0f;
 
-        UpdateAccelerate(frontRight, _cAcceleration);
-        UpdateAccelerate(frontLeft, _cAcceleration);
+            UpdateAccelerate(frontRight, _cAcceleration);
+            UpdateAccelerate(frontLeft, _cAcceleration);
 
-        UpdateBreaking(frontRight, _cBreakForce);
-        UpdateBreaking(frontLeft, _cBreakForce);
-        UpdateBreaking(backRight, _cBreakForce);
-        UpdateBreaking(backLeft, _cBreakForce);
+            UpdateBreaking(frontRight, _cBreakForce);
+            UpdateBreaking(frontLeft, _cBreakForce);
+            UpdateBreaking(backRight, _cBreakForce);
+            UpdateBreaking(backLeft, _cBreakForce);
 
-        UpdateTurnAngle(frontRight, _currentTurnAngle);
-        UpdateTurnAngle(frontLeft, _currentTurnAngle);
+            UpdateTurnAngle(frontRight, _currentTurnAngle);
+            UpdateTurnAngle(frontLeft, _currentTurnAngle);
 
-        UpdateWheel(frontRight, frontRightTransform);
-        UpdateWheel(frontLeft, frontLeftTransform);
-        UpdateWheel(backRight, backRightTransform);
-        UpdateWheel(backLeft, backLeftTransform);
+            UpdateWheel(frontRight, frontRightTransform);
+            UpdateWheel(frontLeft, frontLeftTransform);
+            UpdateWheel(backRight, backRightTransform);
+            UpdateWheel(backLeft, backLeftTransform);
+        }
     }
 
     void UpdateAccelerate(WheelCollider col, float aForce)
