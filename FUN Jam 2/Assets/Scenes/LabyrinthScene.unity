@@ -22557,6 +22557,98 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: -5966198621110897880, guid: 844c0c700d04d384fa80250caa9d4bd0, type: 3}
+--- !u!1 &464342496
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 464342497}
+  - component: {fileID: 464342499}
+  - component: {fileID: 464342498}
+  m_Layer: 0
+  m_Name: Camera
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &464342497
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 464342496}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.21652035, y: -0, z: 0.000000022351736, w: 0.97627807}
+  m_LocalPosition: {x: -1.433, y: 2.3220258, z: -3.855}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1104877130}
+  m_LocalEulerAnglesHint: {x: 25.009, y: 0, z: 0}
+--- !u!81 &464342498
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 464342496}
+  m_Enabled: 1
+--- !u!20 &464342499
+Camera:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 464342496}
+  m_Enabled: 1
+  serializedVersion: 2
+  m_ClearFlags: 1
+  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_projectionMatrixMode: 1
+  m_GateFitMode: 2
+  m_FOVAxisMode: 0
+  m_Iso: 200
+  m_ShutterSpeed: 0.005
+  m_Aperture: 16
+  m_FocusDistance: 10
+  m_FocalLength: 50
+  m_BladeCount: 5
+  m_Curvature: {x: 2, y: 11}
+  m_BarrelClipping: 0.25
+  m_Anamorphism: 0
+  m_SensorSize: {x: 36, y: 24}
+  m_LensShift: {x: 0, y: 0}
+  m_NormalizedViewPortRect:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 1
+    height: 1
+  near clip plane: 0.3
+  far clip plane: 1000
+  field of view: 60
+  orthographic: 0
+  orthographic size: 5
+  m_Depth: 0
+  m_CullingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_RenderingPath: -1
+  m_TargetTexture: {fileID: 0}
+  m_TargetDisplay: 0
+  m_TargetEye: 3
+  m_HDR: 1
+  m_AllowMSAA: 1
+  m_AllowDynamicResolution: 0
+  m_ForceIntoRT: 0
+  m_OcclusionCulling: 1
+  m_StereoConvergence: 10
+  m_StereoSeparation: 0.022
 --- !u!1 &466909850
 GameObject:
   m_ObjectHideFlags: 0
@@ -35903,11 +35995,13 @@ MonoBehaviour:
   speed: 8
   gravity: -19.62
   jumpHeight: 1
+  carStatus: {fileID: 0}
   groundCheck: {fileID: 544453029}
   groundDistance: 0.4
   groundMask:
     serializedVersion: 2
     m_Bits: 512
+  inCar: 0
 --- !u!1 &760770402
 GameObject:
   m_ObjectHideFlags: 0
@@ -46836,6 +46930,10 @@ MonoBehaviour:
   MissingWheel: {fileID: 158377200}
   HasWheel: {fileID: 919132149053498245}
   CarCollider: {fileID: 1024562270}
+  Player: {fileID: 760711702}
+  CarCamera: {fileID: 464342496}
+  MissionTurnOff: {fileID: 1414276645}
+  carStatus: {fileID: 0}
 --- !u!1 &1027255360
 GameObject:
   m_ObjectHideFlags: 0
@@ -51060,6 +51158,7 @@ GameObject:
   - component: {fileID: 1104877130}
   - component: {fileID: 1104877129}
   - component: {fileID: 1104877128}
+  - component: {fileID: 1104877131}
   m_Layer: 0
   m_Name: Car
   m_TagString: Untagged
@@ -51117,7 +51216,7 @@ MonoBehaviour:
   Acceleration: 500
   BreakForce: 300
   TurnAngle: 25
-  inCar: 0
+  carStatus: {fileID: 0}
 --- !u!4 &1104877130
 Transform:
   m_ObjectHideFlags: 0
@@ -51134,8 +51233,22 @@ Transform:
   - {fileID: 289093272}
   - {fileID: 1651184333}
   - {fileID: 480254153}
+  - {fileID: 464342497}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
+--- !u!114 &1104877131
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1104877127}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b666e393992b63e4ea456fd536170bb0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inCar: 0
 --- !u!1 &1104931727
 GameObject:
   m_ObjectHideFlags: 0
@@ -80296,7 +80409,7 @@ AudioSource:
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0

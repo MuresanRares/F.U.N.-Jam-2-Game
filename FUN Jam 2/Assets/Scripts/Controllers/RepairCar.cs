@@ -9,13 +9,26 @@ public class RepairCar : MonoBehaviour
     public GameObject HasWheel;
     public GameObject CarCollider;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    public GameObject Player;
+    public GameObject CarCamera;
+    public GameObject MissionTurnOff;
+    public CarStatus carStatus;
+    
     void Start()
     {
         BrokenText.SetActive(false);
         RepairText.SetActive(false);
         MissingWheel.SetActive(false);
         EnterText.SetActive(false);
+
+        if (carStatus == null)
+        {
+            carStatus = FindObjectOfType<CarStatus>();
+            if (carStatus == null)
+            {
+                Debug.LogError("CarStatus script is not assigned and could not be found in the scene!");
+            }
+        }
     }
 
     private void OnTriggerStay(Collider other)
@@ -42,9 +55,11 @@ public class RepairCar : MonoBehaviour
                 EnterText.SetActive(true);
                 if (Input.GetKey(KeyCode.E))
                 {
-                    // add something like if press e then you enter car
-                    // then is this
+                    Player.SetActive(false);
+                    CarCamera.SetActive(true);
+                    carStatus.inCar = true;
                     CarCollider.SetActive(false);
+                    MissionTurnOff.SetActive(false);
                 }
             }
         }
