@@ -17,6 +17,10 @@ public class EnterTrigger : MonoBehaviour
         {
             EnterText.SetActive(true);
         }
+        else
+        {
+            this.gameObject.SetActive(false);
+        }
     }
 
     private void OnTriggerExit()
